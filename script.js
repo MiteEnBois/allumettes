@@ -32,7 +32,7 @@ function rand(min, max) {
 	return Math.round(Math.random() * (max - min) + min);
 }
 async function tourHum(num) {
-	take(num)
+	take(num, "human")
 	if (ALLUMETTES <= 0) {
 		alert("YA WIN")
 		score_h++;
@@ -49,7 +49,7 @@ function tourCPU() {
 	var took = ALLUMETTES % 4;
 	if (took == 0)
 		took = rand(1, 3)
-	take(took)
+	take(took, "cpu")
 	if (ALLUMETTES <= 0) {
 		alert("YA LOSE")
 		score_c++;
@@ -68,11 +68,11 @@ function goodAnswer() {
 		document.getElementById("cpuStart").classList.add("good_answer")
 }
 
-function take(num) {
+function take(num, player) {
 	var temp = ALLUMETTES - num;
 	for (var i = temp; i < ALLUMETTES; i++) {
-		document.getElementById("alluH" + i).classList.add("allumette_taken")
-		document.getElementById("alluB" + i).classList.add("allumette_taken")
+		document.getElementById("alluH" + i).classList.add("allumette_" + player)
+		document.getElementById("alluB" + i).classList.add("allumette_" + player)
 
 	}
 	ALLUMETTES -= num;
